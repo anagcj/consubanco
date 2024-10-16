@@ -1,16 +1,10 @@
 package com.consuban.investment.Objetos;
 
-
-import java.util.Set;
-
-import com.fasterxml.jackson.annotation.JsonIgnore;
-
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.FetchType;
 import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
-import jakarta.persistence.ManyToOne;
 import jakarta.persistence.OneToOne;
 import jakarta.persistence.Table;
 import lombok.Getter;
@@ -23,14 +17,14 @@ import lombok.Setter;
 public class InvestmentProduct {
 
     @Id
-    @Column(name="idInvestmentProduct", unique=true, nullable=false)
-    private String idInvestmentProduct;
+    @Column(name="idProduct", unique=true, nullable=true)
+    private String idProduct;
 
-    @Column(name="productName", nullable=false)
-    private String productName;
+    @Column(name="productDescription", nullable=false)
+    private String productDescription;
 
-    @Column(name="interestRate", nullable=false)
-    private double interestRate;
+    @Column(name="productCommercialName", nullable=false)
+    private String productCommercialName;
 
     @Column(name="term",unique = false ,nullable = false)
     private String term;

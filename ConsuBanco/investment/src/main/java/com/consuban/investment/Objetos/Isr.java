@@ -18,7 +18,7 @@ import lombok.Setter;
 public class Isr {
 
     @Id
-    @Column(name="idIsr",unique = true,nullable = true)
+    @Column(name="idIsr",unique = true,nullable = false)
     private String idIsr;
 
     @Column(name="rate",unique = false,nullable = false)
