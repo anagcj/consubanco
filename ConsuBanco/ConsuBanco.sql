@@ -13,12 +13,6 @@ SET @OLD_SQL_MODE=@@SQL_MODE, SQL_MODE='ONLY_FULL_GROUP_BY,STRICT_TRANS_TABLES,N
 DROP SCHEMA IF EXISTS `ConsuBanco` ;
 
 -- -----------------------------------------------------
--- Schema ConsuBanco
--- -----------------------------------------------------
-CREATE SCHEMA IF NOT EXISTS `ConsuBanco` DEFAULT CHARACTER SET utf8 ;
-USE `ConsuBanco` ;
-
--- -----------------------------------------------------
 -- Table `ConsuBanco`.`Client`
 -- -----------------------------------------------------
 DROP TABLE IF EXISTS `ConsuBanco`.`Client` ;
@@ -40,7 +34,7 @@ DROP TABLE IF EXISTS `ConsuBanco`.`Branch` ;
 CREATE TABLE IF NOT EXISTS `ConsuBanco`.`Branch` (
   `idBranch` VARCHAR(10) NOT NULL,
   `branchName` VARCHAR(100) NULL,
-  `adrdres` VARCHAR(150) NULL,
+  `address` VARCHAR(150) NULL,
   PRIMARY KEY (`idBranch`))
 ENGINE = InnoDB
 COMMENT = '	';
