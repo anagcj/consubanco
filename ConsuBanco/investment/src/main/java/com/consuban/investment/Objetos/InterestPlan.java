@@ -29,11 +29,6 @@ public class InterestPlan {
 
     @Column(name="interestRate",unique = false ,nullable = false)
     private float interestRate;
-   
-    @ManyToOne(fetch = FetchType.EAGER)
-    @JoinColumn(name = "InvestmentProduct_idProduct", referencedColumnName = "idProduct",
-    nullable = false)
-    private InvestmentProduct investmentProduct;
 
 
 }

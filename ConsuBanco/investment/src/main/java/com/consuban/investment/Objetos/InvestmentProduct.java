@@ -1,8 +1,10 @@
 package com.consuban.investment.Objetos;
 
-import java.util.List;
 
-import jakarta.persistence.CascadeType;
+import java.util.Set;
+
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.FetchType;
@@ -35,7 +37,7 @@ public class InvestmentProduct {
     @Column(name="term",unique = false ,nullable = false)
     private String term;
 
-    @Column(name="investmentProfile",unique = true,nullable = true)
+    @Column(name="investmentProfile",unique = true,nullable = false)
     private String investmentProfile;
 
     @Column(name="periodsInterest",unique = false ,nullable = false)
@@ -48,12 +50,8 @@ public class InvestmentProduct {
     private int interestAnnualBase;
 
     @OneToOne(fetch = FetchType.EAGER)
-    @JoinColumn(name = "Isr_idIsr", referencedColumnName = "idIsr",
-    nullable = false)
+    @JoinColumn(name = "Isr_idIsr", referencedColumnName = "idIsr",nullable = false)
     private Isr isr;
+
     
-    @OneToMany(mappedBy = "investmentProduct", cascade = CascadeType.ALL)
-    private List<InterestPlan> interestPlan;
-
-
 }

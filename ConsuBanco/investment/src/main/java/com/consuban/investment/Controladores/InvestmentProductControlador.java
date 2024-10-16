@@ -1,7 +1,10 @@
 package com.consuban.investment.Controladores;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.DeleteMapping;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -27,6 +30,11 @@ public class InvestmentProductControlador {
     @PutMapping("/modificarInvestmentProduct")
     public InvestmentProduct modificarInvestmentProduct(@RequestBody InvestmentProduct investmentProduct){
         return investmentProductServicio.modificarInvestmentProduct(investmentProduct);
+    }
+
+    @GetMapping("/obtenerInvestmentProduct")
+    public List<InvestmentProduct> obtenerInvestmentProduct(){
+        return investmentProductServicio.obtenerInvestmentProduct();
     }
 
     @DeleteMapping("/eliminarInvestmentProduct")

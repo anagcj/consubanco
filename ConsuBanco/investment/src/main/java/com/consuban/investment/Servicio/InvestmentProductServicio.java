@@ -1,5 +1,6 @@
 package com.consuban.investment.Servicio;
 
+import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -30,6 +31,10 @@ public class InvestmentProductServicio {
         }else{
             return invesP;
         }
+    }
+
+    public List<InvestmentProduct> obtenerInvestmentProduct(){
+        return investmentProductRepositorio.findAll();
     }
 
     public void eliminarinvestmentProduct(String idProduct){

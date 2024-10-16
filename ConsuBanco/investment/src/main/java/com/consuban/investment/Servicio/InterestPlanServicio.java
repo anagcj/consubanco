@@ -1,5 +1,8 @@
 package com.consuban.investment.Servicio;
 
+
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -31,7 +34,11 @@ public class InterestPlanServicio {
             return intP;
         }
     }
-    
+        
+    public List<InterestPlan> obtenerInterestPlan(){
+        return interestPlanRepositorio.findAll();
+    }
+
     public void eliminarInterestPlan(String idInterestPlan){
         interestPlanRepositorio.deleteById(idInterestPlan);
     }
