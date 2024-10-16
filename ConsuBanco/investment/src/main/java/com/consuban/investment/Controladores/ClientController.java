@@ -1,19 +1,15 @@
 package com.consuban.investment.Controladores;
 
-import java.util.List;
-
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.DeleteMapping;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.PutMapping;  // Import necesario para PUT
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
-
+import com.consuban.investment.DTO.ClientDTO;
 import com.consuban.investment.Objetos.Client;
 import com.consuban.investment.Servicio.ClientService;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
+import java.util.Optional;
+import java.util.stream.Collectors;
 
 @RestController
 @RequestMapping("/client")
@@ -22,28 +18,46 @@ public class ClientController {
     @Autowired
     private ClientService clientService;
 
+    // Crear un nuevo cliente
     @PostMapping("/saveClient")
-    public void saveClient(@RequestBody Client client) {
-        clientService.saveClient(client);
+    public ResponseEntity<Client> saveClient(@RequestBody Client client) {
+        // Asegurarse de que cada sucursal esté correctamente enlazada con el cliente
+        if (client.getBranches() != null) {
+            client.getBranches().forEach(branch -> branch.setClient(client));
+        }
+        Client savedClient = clientService.saveClient(client);
+        return ResponseEntity.ok(savedClient);
     }
 
-    @PutMapping("/updateClient")  // Método para manejar la actualización
-    public void updateClient(@RequestBody Client client) {
-        clientService.updateClient(client);
+    // Actualizar un cliente existente
+    @PutMapping("/updateClient")
+    public ResponseEntity<ClientDTO> updateClient(@RequestBody ClientDTO clientDTO) {
+        Client client = clientService.convertToEntity(clientDTO);
+        Client updatedClient = clientService.updateClient(client);
+        return ResponseEntity.ok(clientService.convertToDTO(updatedClient));
     }
 
+    // Obtener un cliente por su ID
     @GetMapping("/{clientId}")
-    public Client getClient(@PathVariable int clientId) {
-        return clientService.getClient(clientId);
+    public ResponseEntity<ClientDTO> getClient(@PathVariable Long clientId) {
+        Optional<Client> client = clientService.getClient(clientId);
+        return client.map(value -> ResponseEntity.ok(clientService.convertToDTO(value)))
+                .orElseGet(() -> ResponseEntity.notFound().build());
     }
 
+
+    // Eliminar un cliente por su ID
     @DeleteMapping("/{clientId}")
-    public void deleteClient(@PathVariable int clientId) {
+    public ResponseEntity<Void> deleteClient(@PathVariable Long clientId) {
         clientService.deleteClient(clientId);
+        return ResponseEntity.ok().build();
     }
 
+    // Obtener todos los clientes
     @GetMapping("/all")
-    public List<Client> getAllClients() {
-        return clientService.getAllClients();
+    public ResponseEntity<List<Client>> getAllClients() {
+        List<Client> clients = clientService.getAllClients();
+        return ResponseEntity.ok(clients);
     }
+
 }

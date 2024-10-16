@@ -1,35 +1,28 @@
 package com.consuban.investment.Objetos;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
+import jakarta.persistence.*;
 
 @Entity
 public class Branch {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int idBranch; // Cambiado de branchId a idBranch para que coincida con la base de datos
+    private Long idBranch;
+
     private String branchName;
     private String address;
 
-    // Constructor vacío
-    public Branch() {}
-
-    // Constructor con parámetros
-    public Branch(int idBranch, String branchName, String address) {
-        this.idBranch = idBranch;
-        this.branchName = branchName;
-        this.address = address;
-    }
+    @ManyToOne
+    @JoinColumn(name = "client_id", nullable = false)  // Relación con la tabla Client
+    private Client client;
 
     // Getters y Setters
-    public int getIdBranch() {
+
+    public Long getIdBranch() {
         return idBranch;
     }
 
-    public void setIdBranch(int idBranch) {
+    public void setIdBranch(Long idBranch) {
         this.idBranch = idBranch;
     }
 
@@ -47,5 +40,13 @@ public class Branch {
 
     public void setAddress(String address) {
         this.address = address;
+    }
+
+    public Client getClient() {
+        return client;
+    }
+
+    public void setClient(Client client) {
+        this.client = client;
     }
 }

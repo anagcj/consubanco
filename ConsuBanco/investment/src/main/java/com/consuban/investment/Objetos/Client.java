@@ -1,39 +1,32 @@
-package com.consuban.investment.Objetos;  // Asegúrate de que este sea el paquete correcto
+package com.consuban.investment.Objetos;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
+import jakarta.persistence.*;
+import java.io.Serializable;
+import java.util.ArrayList;
+import java.util.List;
 
 @Entity
-public class Client {
+public class Client implements Serializable {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int clientId;  // Clave primaria que se generará automáticamente en la base de datos
-
+    private Long idClient;
+    
     private String clientName;
     private String phoneNum;
-    private int branchId;
+    private String clientCol;
 
-    // Constructor vacío
-    public Client() {}
-
-    // Constructor con parámetros
-    public Client(int clientId, String clientName, String phoneNum, int branchId) {
-        this.clientId = clientId;
-        this.clientName = clientName;
-        this.phoneNum = phoneNum;
-        this.branchId = branchId;
-    }
+    @OneToMany(mappedBy = "client", cascade = CascadeType.ALL)
+    private List<Branch> branches = new ArrayList<>();  // Inicializamos la lista
 
     // Getters y Setters
-    public int getClientId() {
-        return clientId;
+
+    public Long getIdClient() {
+        return idClient;
     }
 
-    public void setClientId(int clientId) {
-        this.clientId = clientId;
+    public void setIdClient(Long idClient) {
+        this.idClient = idClient;
     }
 
     public String getClientName() {
@@ -52,11 +45,25 @@ public class Client {
         this.phoneNum = phoneNum;
     }
 
-    public int getBranchId() {
-        return branchId;
+    public String getClientCol() {
+        return clientCol;
     }
 
-    public void setBranchId(int branchId) {
-        this.branchId = branchId;
+    public void setClientCol(String clientCol) {
+        this.clientCol = clientCol;
+    }
+
+    public List<Branch> getBranches() {
+        return branches;
+    }
+
+    public void setBranches(List<Branch> branches) {
+        this.branches = branches;
+    }
+
+    // Método para añadir sucursales al cliente y mantener la coherencia bidireccional
+    public void addBranch(Branch branch) {
+        branches.add(branch);
+        branch.setClient(this);  // Establece la relación en ambas direcciones
     }
 }
