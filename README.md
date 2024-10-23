@@ -2,9 +2,9 @@
 
 ## Descripción
 
-El proyecto **ConsuBanco Investment API** es una aplicación desarrollada en **Java Spring Boot** para exponer un servicio en el cual se puedan dar de alta un invesstment product con su respectivo isr e interest plan, asi mismo se expone otro servicio para clientes y las  sucursales del banco. Proporciona una API REST para gestionar datos sobre productos de inversión con su plan de ISR plan de interes y  clientes y sucursales incluyendo la creación, actualización, consulta y eliminación de estos datos.
+El proyecto **ConsuBanco Investment API** es una aplicación desarrollada en **Java Spring Boot** para exponer un servicio en el cual se puedan dar de alta un producto de inversión con su respectivo isr y plan de interes, asi mismo se expone otro servicio para clientes y las sucursales del banco. Proporciona una API REST para gestionar datos sobre productos de inversión con su respectivo ISR y planes de interes asi mismo los clientes y sucursales incluyendo la creación, actualización, consulta y eliminación de estos datos.
 
-Esta API permite la interacción a través de operaciones HTTP como `GET`, `POST`, `PUT` y `DELETE`, facilitando así la administración de los diferentes recursos de ConsuBanco.
+Esta API permite la interacción a través de operaciones HTTP como `GET`, `POST`, `PUT` y `DELETE`, facilitando así la exposición de estos servicios para la administración de los diferentes recursos de ConsuBanco.
 
 ## Tecnologías Utilizadas
 
@@ -223,7 +223,6 @@ Esta API permite la interacción a través de operaciones HTTP como `GET`, `POST
   ```
   200 OK
   ```
-
 
 ### InvestmentProduct (Producto de Invesión), ISR e Interest Plan (Plan de interes)
 
