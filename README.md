@@ -2,7 +2,7 @@
 
 ## Descripción
 
-El proyecto **ConsuBanco Investment API** es una aplicación desarrollada en **Java Spring Boot** para manejar información relacionada con las inversiones, las sucursales y los clientes del banco. Proporciona una API REST para gestionar datos sobre sucursales, clientes, productos de inversión y planes de ISR, incluyendo la creación, actualización, consulta y eliminación de estos datos.
+El proyecto **ConsuBanco Investment API** es una aplicación desarrollada en **Java Spring Boot** para exponer un servicio en el cual se puedan dar de alta un invesstment product con su respectivo isr e interest plan, asi mismo se expone otro servicio para clientes y las  sucursales del banco. Proporciona una API REST para gestionar datos sobre productos de inversión con su plan de ISR plan de interes y  clientes y sucursales incluyendo la creación, actualización, consulta y eliminación de estos datos.
 
 Esta API permite la interacción a través de operaciones HTTP como `GET`, `POST`, `PUT` y `DELETE`, facilitando así la administración de los diferentes recursos de ConsuBanco.
 
@@ -49,91 +49,105 @@ Esta API permite la interacción a través de operaciones HTTP como `GET`, `POST
 
 ## Endpoints Disponibles
 
-### Branch (Sucursal)
+### Client (Cliente) y Branch (Sucursal)
 
-#### Crear una nueva sucursal
+#### Crear un nuevo cliente y branch
 
-- **URL:** `/branch/saveBranch`
+- **URL:** `/client/saveClient`
 - **Método:** `POST`
 - **Body:**
   ```json
-  {
-    "branchName": "Sucursal Centro",
-    "address": "Ciudad de México"
-  }
+      {
+        "clientName": "Juan Pérez",
+        "phoneNum": "5551234567",
+        "clientCol": "Colonia Ejemplo",
+        "branches": [
+          {
+            "branchName": "Sucursal Norte",
+            "address": "Ciudad de México"
+          },
+          {
+            "branchName": "Sucursal Sur",
+            "address": "Monterrey"
+          }
+        ]
+      }
+
   ```
 - **Respuesta:**
   ```json
-  {
-    "idBranch": 1,
-    "branchName": "Sucursal Centro",
-    "address": "Ciudad de México"
-  }
+     {
+        "clientName": "Juan Pérez",
+        "phoneNum": "5551234567",
+        "clientCol": "Colonia Ejemplo",
+        "branches": [
+          {
+            "branchName": "Sucursal Norte",
+            "address": "Ciudad de México"
+          },
+          {
+            "branchName": "Sucursal Sur",
+            "address": "Monterrey"
+          }
+        ]
+      }
   ```
 
-#### Actualizar una sucursal existente
+#### Actualizar un cliente y branch existente
 
-- **URL:** `/branch/updateBranch`
+- **URL:** `/client/updateClient`
 - **Método:** `PUT`
 - **Body:**
   ```json
-  {
-    "idBranch": 1,
-    "branchName": "Sucursal Actualizada",
-    "address": "Ciudad de México"
-  }
+   {
+        "clientName": "Juan Pérez",
+        "phoneNum": "5551234567",
+        "clientCol": "Se modifica la colonia",
+        "branches": [
+          {
+            "branchName": "Sucursal Norte",
+            "address": "Ciudad de México"
+          },
+          {
+            "branchName": "Sucursal Sur",
+            "address": "Monterrey"
+          }
+        ]
+      }
   ```
 - **Respuesta:**
   ```json
-  {
-    "idBranch": 1,
-    "branchName": "Sucursal Actualizada",
-    "address": "Ciudad de México"
-  }
+      {
+          "idClient": 146,
+          "clientName": "Juan Pérez",
+          "phoneNum": "5551234567",
+          "clientCol": "Se modifica la colonia"
+      }
   ```
 
-#### Obtener una sucursal por ID
+#### Obtener un cliente y branch por ID 
 
-- **URL:** `/branch/{branchId}`
+- **URL:** `/client/{clientId}`
 - **Método:** `GET`
-- **Ejemplo de URL:** `/branch/1`
+- **Ejemplo de URL:** `/client/145`
 - **Respuesta:**
   ```json
-  {
-    "idBranch": 1,
-    "branchName": "Sucursal Centro",
-    "address": "Ciudad de México"
-  }
-  ```
+     {
+       "idClient": 145,
+       "clientName": "Juan Pérez",
+       "phoneNum": "5551234567",
+       "clientCol": "Colonia Ejemplo"
+     }  
+```
 
-#### Eliminar una sucursal por ID
+#### Elimina un cliente y branch por ID
 
-- **URL:** `/branch/{branchId}`
+- **URL:** `/client/{clientId}`
 - **Método:** `DELETE`
-- **Ejemplo de URL:** `/branch/1`
+- **Ejemplo de URL:** `/client/CL001`
 - **Respuesta:**
   ```
   200 OK
-  ```
-
-#### Obtener todas las sucursales
-
-- **URL:** `/branch/all`
-- **Método:** `GET`
-- **Respuesta:**
-  ```json
-  [
-    {
-      "idBranch": 1,
-      "branchName": "Sucursal Centro",
-      "address": "Ciudad de México"
-    },
-    {
-      "idBranch": 2,
-      "branchName": "Sucursal Norte",
-      "address": "Ciudad de México"
-    }
-  ]
   ```
 
 ### ISR (Impuesto Sobre la Renta)
@@ -210,111 +224,141 @@ Esta API permite la interacción a través de operaciones HTTP como `GET`, `POST
   200 OK
   ```
 
-### Client (Cliente)
 
-#### Crear un nuevo cliente
+### InvestmentProduct (Producto de Invesión), ISR e Interest Plan (Plan de interes)
 
-- **URL:** `/client/saveClient`
+#### Crear un nuevo InvestmentProduct (Producto de Invesión), ISR e Interest Plan (Plan de interes)
+
+- **URL:** `/investmentProduct/saveInvestmentProduct`
 - **Método:** `POST`
 - **Body:**
   ```json
-  {
-    "idClient": "CL001",
-    "clientName": "Juan Pérez",
-    "phoneNum": "5551234567"
-  }
+ {
+    "idProduct": "106",
+    "productDescription": "CONSUINVERSION 90 DIAS",
+    "productCommercialName": "INVERSION DIGITAL",
+    "term": "92",
+    "investmentProfile": "PLATINUM",
+    "periodsInterest": 28,
+    "factor": 100,
+    "interestAnnualBase": 360,
+    "isr": {
+        "idIsr": "YU75",
+        "rate": 0.6,
+        "factor": 100,
+        "annualBase": 365
+        },
+    "interestPlan":         
+        {
+            "idInterestPlan": "97",
+            "term": 92,
+            "amount": 5000,
+            "interestRate": 6.5
+        }
+      }
+
   ```
 - **Respuesta:**
   ```json
-  {
-    "idClient": "CL001",
-    "clientName": "Juan Pérez",
-    "phoneNum": "5551234567"
-  }
+    {
+    "idProduct": "110",
+    "productDescription": "CONSUINVERSION 0 DIAS",
+    "productCommercialName": "INVERSION DIGITAL",
+    "term": "92",
+    "investmentProfile": "PLATINUM",
+    "periodsInterest": 28,
+    "factor": 100,
+    "interestAnnualBase": 360,
+    "isr": {
+        "idIsr": "YU76",
+        "rate": 0.6,
+        "factor": 100,
+        "annualBase": 365
+    },
+    "interestPlan": {
+        "idInterestPlan": "98",
+        "term": 92,
+        "amount": 5000,
+        "interestRate": 6.5
+    }
+   }
   ```
 
-#### Actualizar un cliente existente
+#### Actualizar un InvestmentProduct (Producto de Invesión), ISR e Interest Plan (Plan de interes)
 
-- **URL:** `/client/updateClient`
+- **URL:** `investmentProduct/modificarInvestmentProduct`
 - **Método:** `PUT`
 - **Body:**
   ```json
-  {
-    "idClient": "CL001",
-    "clientName": "Juan Pérez Actualizado",
-    "phoneNum": "5559876543"
-  }
+      {
+       "idProduct": "110",
+       "productDescription": "CONSUINVERSION 0 DIAS",
+       "productCommercialName": "MODIFICA",
+       "term": "93",
+       "investmentProfile": "PLATINUM",
+       "periodsInterest": 28,
+       "factor": 100,
+       "interestAnnualBase": 360,
+       "isr": {
+           "idIsr": "YU76",
+           "rate": 0.6,
+           "factor": 120,
+           "annualBase": 365
+           },
+       "interestPlan":         
+           {
+               "idInterestPlan": "98",
+               "term": 92,
+               "amount": 5001,
+               "interestRate": 6.5
+           }
+         }
   ```
 - **Respuesta:**
   ```json
-  {
-    "idClient": "CL001",
-    "clientName": "Juan Pérez Actualizado",
-    "phoneNum": "5559876543"
-  }
+      {
+       "idProduct": "110",
+       "productDescription": "CONSUINVERSION 0 DIAS",
+       "productCommercialName": "MODIFICA",
+       "term": "93",
+       "investmentProfile": "PLATINUM",
+       "periodsInterest": 28,
+       "factor": 100,
+       "interestAnnualBase": 360,
+       "isr": {
+           "idIsr": "YU76",
+           "rate": 0.6,
+           "factor": 120,
+           "annualBase": 365
+       },
+       "interestPlan": {
+           "idInterestPlan": "98",
+           "term": 92,
+           "amount": 5001,
+           "interestRate": 6.5
+       }
+      }
   ```
 
-#### Obtener un cliente por ID
+#### Obtener un InvestmentProduct (Producto de Invesión), ISR e Interest Plan (Plan de interes)
 
-- **URL:** `/client/{clientId}`
+- **URL:** `/investmentProduct/obtenerInvestmentProduct`
 - **Método:** `GET`
-- **Ejemplo de URL:** `/client/CL001`
 - **Respuesta:**
   ```json
-  {
-    "idClient": "CL001",
-    "clientName": "Juan Pérez",
-    "phoneNum": "5551234567"
-  }
-  ```
+   Lista todos los Investment Products 
+```
 
-#### Eliminar un cliente por ID
 
-- **URL:** `/client/{clientId}`
+#### Elimina un InvestmentProduct (Producto de Invesión), ISR e Interest Plan (Plan de interes)
+
+- **URL:** `investmentProduct/eliminarInvestmentProduct?idProduct=110`
 - **Método:** `DELETE`
-- **Ejemplo de URL:** `/client/CL001`
 - **Respuesta:**
   ```
   200 OK
   ```
 
-#### Obtener todos los clientes
-
-- **URL:** `/client/all`
-- **Método:** `GET`
-- **Respuesta:**
-  ```json
-  [
-    {
-      "idClient": "CL001",
-      "clientName": "Juan Pérez",
-      "phoneNum": "5551234567"
-    },
-    {
-      "idClient": "CL002",
-      "clientName": "María López",
-      "phoneNum": "5557654321"
-    }
-  ]
-  ```
-
-## Modelos de Datos
-
-### Branch (Sucursal)
-- `idBranch` (String): Identificador de la sucursal.
-- `branchName` (String): Nombre de la sucursal.
-- `address` (String): Dirección de la sucursal.
-
-### ISR
-- `idIsr` (String): Identificador del ISR.
-- `rate` (float): Tasa del ISR.
-- `factor` (int): Factor del ISR.
-- `annualBase` (int): Base anual para el cálculo del ISR.
-
-### Client (Cliente)
-- `idClient` (String): Identificador del cliente.
-- `clientName` (String): Nombre del cliente.
-- `phoneNum` (String): Número de teléfono del cliente.
 
 ## Notas Adicionales
 - **Errores comunes**: Si experimentas problemas al realizar operaciones `POST`, `PUT` o `DELETE`, verifica que las credenciales de la base de datos sean correctas y que las tablas estén correctamente configuradas.
