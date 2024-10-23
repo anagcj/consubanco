@@ -232,55 +232,54 @@ Esta API permite la interacción a través de operaciones HTTP como `GET`, `POST
 - **Método:** `POST`
 - **Body:**
   ```json
- {
-    "idProduct": "106",
-    "productDescription": "CONSUINVERSION 90 DIAS",
-    "productCommercialName": "INVERSION DIGITAL",
-    "term": "92",
-    "investmentProfile": "PLATINUM",
-    "periodsInterest": 28,
-    "factor": 100,
-    "interestAnnualBase": 360,
-    "isr": {
-        "idIsr": "YU75",
-        "rate": 0.6,
-        "factor": 100,
-        "annualBase": 365
-        },
-    "interestPlan":         
-        {
-            "idInterestPlan": "97",
-            "term": 92,
-            "amount": 5000,
-            "interestRate": 6.5
-        }
-      }
-
+       {
+          "idProduct": "106",
+          "productDescription": "CONSUINVERSION 90 DIAS",
+          "productCommercialName": "INVERSION DIGITAL",
+          "term": "92",
+          "investmentProfile": "PLATINUM",
+          "periodsInterest": 28,
+          "factor": 100,
+          "interestAnnualBase": 360,
+          "isr": {
+              "idIsr": "YU75",
+              "rate": 0.6,
+              "factor": 100,
+              "annualBase": 365
+              },
+          "interestPlan":         
+              {
+                  "idInterestPlan": "97",
+                  "term": 92,
+                  "amount": 5000,
+                  "interestRate": 6.5
+              }
+            }
   ```
 - **Respuesta:**
   ```json
-    {
-    "idProduct": "110",
-    "productDescription": "CONSUINVERSION 0 DIAS",
-    "productCommercialName": "INVERSION DIGITAL",
-    "term": "92",
-    "investmentProfile": "PLATINUM",
-    "periodsInterest": 28,
-    "factor": 100,
-    "interestAnnualBase": 360,
-    "isr": {
-        "idIsr": "YU76",
-        "rate": 0.6,
-        "factor": 100,
-        "annualBase": 365
-    },
-    "interestPlan": {
-        "idInterestPlan": "98",
-        "term": 92,
-        "amount": 5000,
-        "interestRate": 6.5
-    }
-   }
+       {
+       "idProduct": "110",
+       "productDescription": "CONSUINVERSION 0 DIAS",
+       "productCommercialName": "INVERSION DIGITAL",
+       "term": "92",
+       "investmentProfile": "PLATINUM",
+       "periodsInterest": 28,
+       "factor": 100,
+       "interestAnnualBase": 360,
+       "isr": {
+           "idIsr": "YU76",
+           "rate": 0.6,
+           "factor": 100,
+           "annualBase": 365
+       },
+       "interestPlan": {
+           "idInterestPlan": "98",
+           "term": 92,
+           "amount": 5000,
+           "interestRate": 6.5
+       }
+      }
   ```
 
 #### Actualizar un InvestmentProduct (Producto de Invesión), ISR e Interest Plan (Plan de interes)
@@ -345,9 +344,8 @@ Esta API permite la interacción a través de operaciones HTTP como `GET`, `POST
 - **Método:** `GET`
 - **Respuesta:**
   ```json
-   Lista todos los Investment Products 
-```
-
+         Lista todos los Investment Products 
+  ```
 
 #### Elimina un InvestmentProduct (Producto de Invesión), ISR e Interest Plan (Plan de interes)
 
