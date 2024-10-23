@@ -21,13 +21,13 @@ public class Isr {
     @Column(name="idIsr",unique = true,nullable = false)
     private String idIsr;
 
-    @Column(name="rate",unique = false,nullable = false)
+    @Column(name="rate",unique = false, nullable = true)
     private float rate;
 
-    @Column(name="factor",unique = false ,nullable = false)
+    @Column(name="factor",unique = false ,nullable = true)
     private int factor;
 
-    @Column(name="annualBase",unique = false, nullable = false)
+    @Column(name="annualBase",unique = false, nullable = true)
     private int annualBase;
 
     @OneToOne(mappedBy = "isr")
