@@ -132,13 +132,13 @@ Esta API permite la interacción a través de operaciones HTTP como `GET`, `POST
 - **Ejemplo de URL:** `/client/145`
 - **Respuesta:**
   ```json
-     {
-       "idClient": 145,
-       "clientName": "Juan Pérez",
-       "phoneNum": "5551234567",
-       "clientCol": "Colonia Ejemplo"
-     }  
-```
+        {
+          "idClient": 145,
+          "clientName": "Juan Pérez",
+          "phoneNum": "5551234567",
+          "clientCol": "Colonia Ejemplo"
+        }  
+   ```
 
 #### Elimina un cliente y branch por ID
 
@@ -204,14 +204,14 @@ Esta API permite la interacción a través de operaciones HTTP como `GET`, `POST
 - **Método:** `GET`
 - **Respuesta:**
   ```json
-  [
-    {
-      "idIsr": "YU69",
-      "rate": 0.8,
-      "factor": 110,
-      "annualBase": 366
-    }
-  ]
+     [
+       {
+         "idIsr": "YU69",
+         "rate": 0.8,
+         "factor": 110,
+         "annualBase": 366
+       }
+     ]
   ```
 
 #### Eliminar un ISR por ID
@@ -221,7 +221,7 @@ Esta API permite la interacción a través de operaciones HTTP como `GET`, `POST
 - **Ejemplo de URL:** `/isr/eliminarIsr?idIsr=YU69`
 - **Respuesta:**
   ```
-  200 OK
+       200 OK
   ```
 
 ### InvestmentProduct (Producto de Invesión), ISR e Interest Plan (Plan de interes)
