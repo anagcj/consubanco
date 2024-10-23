@@ -365,4 +365,4 @@ Esta API permite la interacción a través de operaciones HTTP como `GET`, `POST
 ConsuBanco Development Team (Ana Gabriela Campos, Asinú García Krinis)
 
 ## Licencia
-Este proyecto está bajo la licencia MIT, ejemplo con fines educativos para aplicar conocimientos adquiridos en el curso.
+Este proyecto está bajo la licencia MIT es un ejemplo con fines educativos para aplicar conocimientos adquiridos en el curso.
